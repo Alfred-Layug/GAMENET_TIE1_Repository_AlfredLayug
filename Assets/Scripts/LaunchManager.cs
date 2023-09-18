@@ -10,6 +10,11 @@ public class LaunchManager : MonoBehaviourPunCallbacks
     public GameObject ConnectionStatusPanel;
     public GameObject LobbyPanel;
 
+    private void Awake()
+    {
+        PhotonNetwork.AutomaticallySyncScene = true;
+    }
+
     private void Start()
     {
         EnterGamePanel.SetActive(true);
@@ -65,6 +70,7 @@ public class LaunchManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log(PhotonNetwork.NickName + " has entered " + PhotonNetwork.CurrentRoom.Name);
+        PhotonNetwork.LoadLevel("GameScene");
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
